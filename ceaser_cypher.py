@@ -16,7 +16,7 @@ print("\n")
 for i in range(0,1000):
 
     #select the mode 
-    direction = input("Type 'encode' to encrypt, Type 'decrypt' to decrypt the message\n")
+    direction = input("Type 'encode' to encrypt, Type 'decode' to decrypt the message\n")
     #.lower() converts the message to lower case letters
     text = input("Enter the message\n").lower()
     #the shift formula for encryption or decryption of messages
@@ -67,12 +67,18 @@ for i in range(0,1000):
         #converting choice in lower case 
         lower_choice = choice.lower()
         if lower_choice == "encode":
-            encrypt(message=text, shift_amount=shift)
-            print(f"the encrypted message is = {encrypt.cipher_text}")
+            if shift<26:
+                 encrypt(message=text, shift_amount=shift)
+                 print(f"the encrypted message is = {encrypt.cipher_text}")
+            else:
+                print("enter the shift less than 26")
   
         if lower_choice == "decode":
-            decrypt(cipher_text=text, shift_amount=shift)
-            print(f"the decrypted message is = {decrypt.message_text}")
+            if shift<26:
+                decrypt(cipher_text=text, shift_amount=shift)
+                print(f"the decrypted message is = {decrypt.message_text}")
+            else:
+                print("enter the shift less than 26")
     display(choice=direction)
     print("press q to quit or enter to continue:->")
     q=input()
