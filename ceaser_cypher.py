@@ -83,4 +83,10 @@ for i in range(0,1000):
     print("press q to quit or enter to continue:->")
     q=input()
     if q=='q' or q=='Q':
+        welcome_message4=text2art("program") # Return ASCII text (default font) and default chr_ignore=True 
+        print(welcome_message4)
+        print("\n")
+        welcome_message5=text2art("terminated") # Return ASCII text (default font) and default chr_ignore=True 
+        print(welcome_message5)
+        print("\n")
         break
