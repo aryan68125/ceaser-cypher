@@ -32,14 +32,15 @@ for i in range(0,1000):
             # encrypt.x will create an trribute of the function of the variable so that we can access it outside the function
             # alphabet.alphabet acessing alphabet list from alphabet module
             if char is not ' ':
-                position = alphabet.alphabet.index(char)
-                new_position = position + shift_amount
-                new_char = alphabet.alphabet[new_position]
-                encrypt.cipher_text += new_char
+                if char in alphabet.alphabet:
+                    position = alphabet.alphabet.index(char)
+                    new_position = position + shift_amount
+                    new_char = alphabet.alphabet[new_position]
+                    encrypt.cipher_text += new_char
+                else:
+                    encrypt.cipher_text += char
             else:
                 encrypt.cipher_text += ' '
-
-    encrypt(message=text, shift_amount=shift)
 
     #decrypt function
     def decrypt(cipher_text,shift_amount):
@@ -51,22 +52,26 @@ for i in range(0,1000):
             # encrypt.x will create an trribute of the function of the variable so that we can access it outside the function
             # alphabet.alphabet acessing alphabet list from alphabet module
             if char is not ' ':
-                position = alphabet.alphabet.index(char)
-                new_position = position - shift_amount
-                new_char = alphabet.alphabet[new_position]
-                decrypt.message_text += new_char
+                if char in alphabet.alphabet:
+                    position = alphabet.alphabet.index(char)
+                    new_position = position - shift_amount
+                    new_char = alphabet.alphabet[new_position]
+                    decrypt.message_text += new_char
+                else:
+                    decrypt.message_text += char
             else:
                 decrypt.message_text += ' '
 
-    decrypt(cipher_text=text, shift_amount=shift)
-
+    #display function
     def display(choice):
         #converting choice in lower case 
         lower_choice = choice.lower()
         if lower_choice == "encode":
+            encrypt(message=text, shift_amount=shift)
             print(f"the encrypted message is = {encrypt.cipher_text}")
   
         if lower_choice == "decode":
+            decrypt(cipher_text=text, shift_amount=shift)
             print(f"the decrypted message is = {decrypt.message_text}")
     display(choice=direction)
     print("press q to quit or enter to continue:->")
